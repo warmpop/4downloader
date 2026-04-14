@@ -6,8 +6,6 @@ A tiny Chrome extension that skips the 30-second ad redirect on 4download.net an
 
 When you click a download link on 4download.net, the site routes you through `tinurlz.com/got/#...` which redirects to an ad wall you have to wait through. This extension intercepts that navigation before the page even loads, extracts the real download URL buried inside it, and sends you there directly.
 
----
-
 ## Installation
 
 1. Download or clone this repo

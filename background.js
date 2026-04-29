@@ -15,24 +15,27 @@ chrome.webNavigation.onBeforeNavigate.addListener(
     try {
       embeddedUrl = new URL(afterHash);
     } catch (e) {
-      console.log('4Download Skipper: Could not parse embedded URL', afterHash);
+      console.log('4downloader: Could not parse embedded URL', afterHash);
       return;
     }
 
     const dlParam = embeddedUrl.searchParams.get('dl');
     if (!dlParam) {
-      console.log('4Download Skipper: No dl= param found in', afterHash);
+      console.log('4downloader: No dl= param found in', afterHash);
       return;
     }
 
     // Decode the final destination URL
     const finalUrl = decodeURIComponent(dlParam);
-    console.log('4Download Skipper: Redirecting to', finalUrl);
+    console.log('4downloader: Redirecting to', finalUrl);
 
     // Redirect the tab to the real download link
     chrome.tabs.update(details.tabId, { url: finalUrl });
   },
   {
-    url: [{ hostEquals: 'tinurlz.com', pathPrefix: '/got/' }]
+    url: [
+      { hostEquals: 'tinurlz.com', pathPrefix: '/got/' },
+      { hostEquals: 'tinurlz.com', pathPrefix: '/get/' }
+    ]
   }
 );
